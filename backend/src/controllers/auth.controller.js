@@ -101,6 +101,15 @@ export function logout(req, res) {
   res.status(200).json({ success: true, message: "Logout successful" });
 }
 
+export async function getAuthUser(req, res) {
+  try {
+    res.status(200).json({ success: true, user: req.user });
+  } catch (error) {
+    console.log("Error in getAuthUser controller", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
 export async function onboard(req, res) {
   try {
     const userId = req.user._id;
